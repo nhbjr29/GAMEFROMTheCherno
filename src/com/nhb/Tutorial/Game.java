@@ -1,6 +1,9 @@
 package com.nhb.Tutorial;
 
 import javax.swing.JFrame;
+
+import com.nhb.Tutorial.graphics.Screen;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -20,6 +23,8 @@ public class Game extends Canvas implements Runnable {
     private JFrame frame;
     private boolean running = false;
 
+    private Screen screen;
+
     private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
     private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
@@ -27,7 +32,9 @@ public class Game extends Canvas implements Runnable {
         Dimension size = new Dimension(width * scale, height * scale);
         setPreferredSize(size);
 
+        screen = new Screen(width, height);
         frame = new JFrame();
+
     }
 
     public synchronized void start() {
